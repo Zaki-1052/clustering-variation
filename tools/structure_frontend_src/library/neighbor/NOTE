@@ -1,0 +1,11 @@
+The trees show a representation of the genetic distances among the K Structure clusters. The trees are computed by applying the neighbor joining algorithm to the matrix of allele-frequency divergence among clusters (net nucleotide distance). The matrix of distances may be found near the top of the Structure output file.
+
+The tree was estimated using the program NEIGHBOR by Mary Kuhner and John Yamato, implementing Saitou and Nei's "Neighbor Joining Method".  The plot was produced using DRAWTREE by Joe Felsenstein.  Both programs are distributed by Joe Felsenstein as part of his Phylip phylogeny package.  If you publish one of these plots, please cite Phylip:
+
+Felsenstein, J. 2005. PHYLIP (Phylogeny Inference Package) version 3.6. Distributed by the author. Department of Genome Sciences, University of Washington, Seattle.
+
+and the neighbor-joining algorithm:
+
+Saitou N, Nei M. 1987. The neighbor-joining method: a new method for reconstructing phylogenetic trees.  Mol Biol Evol. 1987 Jul;4(4):406-25.
+
+We thank Joe Felsenstein for his generous work in making these programs publicly available.

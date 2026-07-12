@@ -1,0 +1,34 @@
+
+   6 Populations
+
+Neighbor-Joining/UPGMA method version 3.68
+
+
+      +-- 3        
+    +-1 
+  +-2 + 6        
+  ! ! 
+  ! + 4        
+  ! 
+  ! +- 2        
+  3-4 
+  ! + 5        
+  ! 
+  + 1        
+
+
+remember: this is an unrooted tree!
+
+Between        And            Length
+-------        ---            ------
+   3             2            0.00429
+   2             1            0.00861
+   1           3              0.05246
+   1           6              0.00854
+   2           4              0.00479
+   3             4            0.00226
+   4           2              0.02368
+   4           5              0.01063
+   3           1              0.00554
+
+

@@ -1,0 +1,161 @@
+
+=== Cross-Validation Analysis ===
+
+ADMIXTURE Cross-Validation Summary
+======================================================================
+  K     Mean CV      Std CV     Mean LogLik   Reps
+----------------------------------------------------------------------
+  1    0.253216    0.000009   -439406767.30      5
+  2    0.234020    0.000906   -416737416.68      5
+  3    0.217052    0.000019   -396908844.96      5
+  4    0.212506    0.000011   -390888352.62      5
+  5    0.210400    0.000016   -387705286.93      5
+  6    0.209262    0.000452   -385241712.99      5
+  7    0.208634    0.000019   -383238692.92      5 <-- best
+  8    0.208910    0.000312   -381982609.51      5
+  9    0.208972    0.000434   -380592435.75      5
+ 10    0.209754    0.000507   -379490623.51      5
+
+CV summary written to: ../snpk_results/cv_summary.csv
+CV plot saved to: ../snpk_results/cv_plot.png
+Optimal K by cross-validation: 7
+
+=== Admixture Bar Plots ===
+K=5: using ../snpk_output/K5_rep5/hgdp_pruned.5.Q (927 individuals, 5 clusters)
+K=7: using ../snpk_output/K7_rep2/hgdp_pruned.7.Q (927 individuals, 7 clusters)
+Bar plot saved to: ../snpk_results/barplot.png
+
+=== PCA ===
+PCA plot saved to: ../snpk_results/pca.png
+PC1: 36.4%, PC2: 20.1%, PC3: 7.9%
+Total PC1+PC2: 56.5%
+
+=== AMOVA ===
+Loading genotype data...
+  927 individuals, 10747738 SNPs
+
+Hierarchical AMOVA — Variance Partitioning (SNP data)
+=================================================================
+Source of variation                   Variance % of total
+-----------------------------------------------------------------
+Among groups (regions)                  0.0169       8.0%
+Among pops within groups                0.0087       4.1%
+Within populations                      0.1857      87.9%
+-----------------------------------------------------------------
+Total                                   0.2113     100.0%
+
+F-statistics:
+  Fct (among groups)              = 0.0799
+  Fsc (among pops within groups)  = 0.0449
+  Fst (among pops / total)        = 0.1212
+
+Loci used: 10747738
+
+AMOVA plot saved to: ../snpk_results/amova.png
+
+=== Isolation by Distance ===
+Computing pairwise Fst (Weir & Cockerham, biallelic)...
+  Fst: 100/1431 pairs computed
+  Fst: 200/1431 pairs computed
+  Fst: 300/1431 pairs computed
+  Fst: 400/1431 pairs computed
+  Fst: 500/1431 pairs computed
+  Fst: 600/1431 pairs computed
+  Fst: 700/1431 pairs computed
+  Fst: 800/1431 pairs computed
+  Fst: 900/1431 pairs computed
+  Fst: 1000/1431 pairs computed
+  Fst: 1100/1431 pairs computed
+  Fst: 1200/1431 pairs computed
+  Fst: 1300/1431 pairs computed
+  Fst: 1400/1431 pairs computed
+  Fst: 1431/1431 pairs computed
+Mean Fst = 0.1096
+Running Mantel test (9999 permutations)...
+Mantel r = 0.7184, p = 0.0001
+IBD plot saved to: ../snpk_results/ibd.png
+
+=== Heterozygosity vs Distance from Africa ===
+  Yoruba                Het=0.2177  Dist=3712 km
+  Mandenka              Het=0.2165  Dist=5551 km
+  BantuKenya            Het=0.2141  Dist=1348 km
+  Biaka                 Het=0.2129  Dist=2465 km
+  BantuSouthAfrica      Het=0.2096  Dist=4155 km
+  Mozabite              Het=0.2064  Dist=4481 km
+  Bedouin               Het=0.2002  Dist=2477 km
+  Palestinian           Het=0.1995  Dist=2587 km
+  Makrani               Het=0.1984  Dist=5830 km
+  Sindhi                Het=0.1968  Dist=6304 km
+  Balochi               Het=0.1956  Dist=5886 km
+  Brahui                Het=0.1954  Dist=5886 km
+  Mbuti                 Het=0.1950  Dist=1399 km
+  Pathan                Het=0.1942  Dist=6204 km
+  Burusho               Het=0.1935  Dist=6505 km
+  Druze                 Het=0.1935  Dist=2587 km
+  Hazara                Het=0.1921  Dist=6157 km
+  French                Het=0.1897  Dist=5942 km
+  Russian               Het=0.1896  Dist=6053 km
+  Adygei                Het=0.1891  Dist=4591 km
+  Uygur                 Het=0.1880  Dist=7169 km
+  Sardinian             Het=0.1867  Dist=5398 km
+  Basque                Het=0.1855  Dist=6101 km
+  BergamoItalian        Het=0.1850  Dist=5332 km
+  Orcadian              Het=0.1849  Dist=6695 km
+  Kalash                Het=0.1832  Dist=6281 km
+  Tuscan                Het=0.1821  Dist=5208 km
+  Yakut                 Het=0.1791  Dist=10348 km
+  Han                   Het=0.1761  Dist=10172 km
+  Japanese              Het=0.1750  Dist=12003 km
+  Tu                    Het=0.1749  Dist=8909 km
+  San                   Het=0.1745  Dist=3915 km
+  Mongolian             Het=0.1737  Dist=10050 km
+  Cambodian             Het=0.1735  Dist=10336 km
+  Xibo                  Het=0.1734  Dist=7200 km
+  NorthernHan           Het=0.1714  Dist=9542 km
+  Daur                  Het=0.1712  Dist=10406 km
+  Yi                    Het=0.1712  Dist=9353 km
+  Oroqen                Het=0.1702  Dist=10519 km
+  Hezhen                Het=0.1699  Dist=11109 km
+  Tujia                 Het=0.1691  Dist=9859 km
+  Miao                  Het=0.1687  Dist=9901 km
+  Naxi                  Het=0.1682  Dist=9158 km
+  Dai                   Het=0.1677  Dist=9385 km
+  She                   Het=0.1672  Dist=10848 km
+  Maya                  Het=0.1657  Dist=21138 km
+  Lahu                  Het=0.1640  Dist=9337 km
+  Bougainville          Het=0.1517  Dist=16242 km
+  Pima                  Het=0.1449  Dist=19349 km
+  Colombian             Het=0.1424  Dist=23953 km
+  PapuanSepik           Het=0.1401  Dist=14918 km
+  PapuanHighlands       Het=0.1387  Dist=15253 km
+  Karitiana             Het=0.1322  Dist=25473 km
+  Surui                 Het=0.1188  Dist=25625 km
+Heterozygosity plot saved to: ../snpk_results/heterozygosity.png
+
+=== Combined Figure ===
+Loading data...
+Plotting bar plots...
+Loading PCA results...
+Loading genotype data for Fst/Het/AMOVA...
+Computing pairwise Fst...
+  Fst: 100/1431 pairs computed
+  Fst: 200/1431 pairs computed
+  Fst: 300/1431 pairs computed
+  Fst: 400/1431 pairs computed
+  Fst: 500/1431 pairs computed
+  Fst: 600/1431 pairs computed
+  Fst: 700/1431 pairs computed
+  Fst: 800/1431 pairs computed
+  Fst: 900/1431 pairs computed
+  Fst: 1000/1431 pairs computed
+  Fst: 1100/1431 pairs computed
+  Fst: 1200/1431 pairs computed
+  Fst: 1300/1431 pairs computed
+  Fst: 1400/1431 pairs computed
+  Fst: 1431/1431 pairs computed
+Computing heterozygosity vs distance...
+Computing AMOVA...
+Combined figure saved to: ../snpk_results/combined_figure.png
+
+=== All analyses complete ===
+Results in: ../snpk_results

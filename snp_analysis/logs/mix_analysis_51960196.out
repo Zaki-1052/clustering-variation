@@ -1,0 +1,9 @@
+======================================
+ADMIXTURE Analysis
+======================================
+Started: Sat Jul 11 15:18:45 PDT 2026
+
+=== Starting Analysis runs ===
+
+Finished: Sat Jul 11 15:20:25 PDT 2026
+slurmstepd: error: Detected 1 oom_kill event in StepId=51960196.batch. Some of the step tasks have been OOM Killed.

@@ -1,0 +1,67 @@
+****                   ADMIXTURE Version 1.4.0                  ****
+****                    Copyright 2008-2025                     ****
+****           David Alexander, Suyash Shringarpure,            ****
+****                John Novembre, Ken Lange                    ****
+****                                                            ****
+****                 Please cite our paper!                     ****
+****   Information at https://dalexander.github.io/admixture/   ****
+
+Cross-validation will be performed.  Folds=5.
+Parallel execution requested.  Will use 8 threads.
+Random seed: 5046
+Point estimation method: Block relaxation algorithm
+Convergence acceleration algorithm: QuasiNewton, 3 secant conditions
+Point estimation will terminate when objective function delta < 0.0001
+Estimation of standard errors disabled; will compute point estimates only.
+Size of G: 927x1209774
+Performing five EM steps to prime main algorithm
+1 (EM) 	Elapsed: 3.574	Loglikelihood: -4.79356e+08	(delta): 1.21997e+09
+2 (EM) 	Elapsed: 4.031	Loglikelihood: -4.49253e+08	(delta): 3.01028e+07
+3 (EM) 	Elapsed: 3.25	Loglikelihood: -4.45119e+08	(delta): 4.13424e+06
+4 (EM) 	Elapsed: 2.743	Loglikelihood: -4.42958e+08	(delta): 2.16145e+06
+5 (EM) 	Elapsed: 4.114	Loglikelihood: -4.41426e+08	(delta): 1.53162e+06
+Initial loglikelihood: -4.41426e+08
+Starting main algorithm
+1 (QN/Block) 	Elapsed: 13.169	Loglikelihood: -4.08863e+08	(delta): 3.25634e+07
+2 (QN/Block) 	Elapsed: 14.885	Loglikelihood: -3.96175e+08	(delta): 1.2688e+07
+3 (QN/Block) 	Elapsed: 16.168	Loglikelihood: -3.92479e+08	(delta): 3.69547e+06
+4 (QN/Block) 	Elapsed: 20.211	Loglikelihood: -3.90531e+08	(delta): 1.94857e+06
+5 (QN/Block) 	Elapsed: 17.785	Loglikelihood: -3.89236e+08	(delta): 1.29445e+06
+6 (QN/Block) 	Elapsed: 16.869	Loglikelihood: -3.88463e+08	(delta): 773585
+7 (QN/Block) 	Elapsed: 18.046	Loglikelihood: -3.88189e+08	(delta): 273359
+8 (QN/Block) 	Elapsed: 17.409	Loglikelihood: -3.88097e+08	(delta): 92418
+9 (QN/Block) 	Elapsed: 15.137	Loglikelihood: -3.8806e+08	(delta): 36335.7
+10 (QN/Block) 	Elapsed: 15.785	Loglikelihood: -3.88033e+08	(delta): 27595
+11 (QN/Block) 	Elapsed: 15.879	Loglikelihood: -3.87992e+08	(delta): 40475.9
+12 (QN/Block) 	Elapsed: 17.614	Loglikelihood: -3.87951e+08	(delta): 41402.8
+13 (QN/Block) 	Elapsed: 18.953	Loglikelihood: -3.87917e+08	(delta): 34041.8
+14 (QN/Block) 	Elapsed: 19.489	Loglikelihood: -3.87884e+08	(delta): 33200.5
+15 (QN/Block) 	Elapsed: 18.392	Loglikelihood: -3.87851e+08	(delta): 32365.2
+16 (QN/Block) 	Elapsed: 16.96	Loglikelihood: -3.87812e+08	(delta): 39686.4
+17 (QN/Block) 	Elapsed: 18.194	Loglikelihood: -3.87764e+08	(delta): 47229.6
+18 (QN/Block) 	Elapsed: 22.089	Loglikelihood: -3.87735e+08	(delta): 29584.2
+19 (QN/Block) 	Elapsed: 15.456	Loglikelihood: -3.87721e+08	(delta): 14153.4
+20 (QN/Block) 	Elapsed: 17.978	Loglikelihood: -3.87709e+08	(delta): 11715
+21 (QN/Block) 	Elapsed: 17.365	Loglikelihood: -3.87707e+08	(delta): 2090.51
+22 (QN/Block) 	Elapsed: 13.422	Loglikelihood: -3.87706e+08	(delta): 873.508
+23 (QN/Block) 	Elapsed: 13.954	Loglikelihood: -3.87706e+08	(delta): 385.616
+24 (QN/Block) 	Elapsed: 16.137	Loglikelihood: -3.87706e+08	(delta): 88.8305
+25 (QN/Block) 	Elapsed: 18.176	Loglikelihood: -3.87705e+08	(delta): 12.5476
+26 (QN/Block) 	Elapsed: 13.118	Loglikelihood: -3.87705e+08	(delta): 0.840019
+27 (QN/Block) 	Elapsed: 15.124	Loglikelihood: -3.87705e+08	(delta): 0.161569
+28 (QN/Block) 	Elapsed: 17.19	Loglikelihood: -3.87705e+08	(delta): 0.0306367
+29 (QN/Block) 	Elapsed: 13.41	Loglikelihood: -3.87705e+08	(delta): 0.00436163
+30 (QN/Block) 	Elapsed: 13.087	Loglikelihood: -3.87705e+08	(delta): 0.000606894
+31 (QN/Block) 	Elapsed: 14.507	Loglikelihood: -3.87705e+08	(delta): 3.46303e-05
+Summary: 
+Converged in 31 iterations (577.638 sec)
+Loglikelihood: -387705497.366554
+Fst divergences between estimated populations: 
+	Pop0	Pop1	Pop2	Pop3	
+Pop0	
+Pop1	0.104	
+Pop2	0.082	0.125	
+Pop3	0.161	0.202	0.136	
+Pop4	0.112	0.174	0.127	0.181	
+CV error (K=5): 0.21040
+Writing output files.

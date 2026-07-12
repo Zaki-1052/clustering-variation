@@ -1,0 +1,173 @@
+======================================
+ADMIXTURE K-sweep (K=1..10, 5 reps)
+======================================
+Started: Fri Jul 10 16:26:15 PDT 2026
+
+Input: /expanse/lustre/projects/csd940/zalibhai/clustering/hgdp_pruned.bed
+Output: /expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output
+ADMIXTURE binary: /expanse/lustre/projects/csd940/zalibhai/clustering/admixture_linux-1.4.0/admixture
+Parallelism: 8 concurrent runs x 8 threads
+
+Dataset: 927 individuals, 1209774 SNPs
+
+=== Starting ADMIXTURE runs ===
+[16:26:37] Launching K=1 rep=1 seed=1043
+[16:26:37] Launching K=1 rep=2 seed=1044
+[16:26:37] Launching K=1 rep=3 seed=1045
+[16:26:37] Launching K=1 rep=4 seed=1046
+[16:26:37] Launching K=1 rep=5 seed=1047
+[16:26:37] Launching K=2 rep=1 seed=2043
+[16:26:37] Launching K=2 rep=2 seed=2044
+[16:26:37] Launching K=2 rep=3 seed=2045
+[16:30:07] Launching K=2 rep=4 seed=2046
+[16:30:07] Launching K=2 rep=5 seed=2047
+[16:30:07] Launching K=3 rep=1 seed=3043
+[16:30:37] Launching K=3 rep=2 seed=3044
+[16:30:37] Launching K=3 rep=3 seed=3045
+[16:33:07] Launching K=3 rep=4 seed=3046
+[16:33:07] Launching K=3 rep=5 seed=3047
+[16:33:37] Launching K=4 rep=1 seed=4043
+[16:36:37] Launching K=4 rep=2 seed=4044
+[16:37:07] Launching K=4 rep=3 seed=4045
+[16:37:37] Launching K=4 rep=4 seed=4046
+[16:37:37] Launching K=4 rep=5 seed=4047
+[16:38:07] Launching K=5 rep=1 seed=5043
+[16:40:37] Launching K=5 rep=2 seed=5044
+[16:40:37] Launching K=5 rep=3 seed=5045
+[16:42:37] Launching K=5 rep=4 seed=5046
+[16:48:08] Launching K=5 rep=5 seed=5047
+[16:50:08] Launching K=6 rep=1 seed=6043
+[16:52:08] Launching K=6 rep=2 seed=6044
+[16:53:08] Launching K=6 rep=3 seed=6045
+[16:53:08] Launching K=6 rep=4 seed=6046
+[16:55:08] Launching K=6 rep=5 seed=6047
+[16:57:08] Launching K=7 rep=1 seed=7043
+[16:58:08] Launching K=7 rep=2 seed=7044
+[17:03:39] Launching K=7 rep=3 seed=7045
+[17:04:09] Launching K=7 rep=4 seed=7046
+[17:05:09] Launching K=7 rep=5 seed=7047
+[17:06:39] Launching K=8 rep=1 seed=8043
+[17:07:09] Launching K=8 rep=2 seed=8044
+[17:13:09] Launching K=8 rep=3 seed=8045
+[17:16:09] Launching K=8 rep=4 seed=8046
+[17:17:09] Launching K=8 rep=5 seed=8047
+[17:20:09] Launching K=9 rep=1 seed=9043
+[17:21:09] Launching K=9 rep=2 seed=9044
+[17:22:09] Launching K=9 rep=3 seed=9045
+[17:29:10] Launching K=9 rep=4 seed=9046
+[17:29:40] Launching K=9 rep=5 seed=9047
+[17:34:40] Launching K=10 rep=1 seed=10043
+[17:36:10] Launching K=10 rep=2 seed=10044
+[17:37:40] Launching K=10 rep=3 seed=10045
+[17:40:40] Launching K=10 rep=4 seed=10046
+[17:49:10] Launching K=10 rep=5 seed=10047
+
+All jobs launched. Waiting for final batch...
+
+======================================
+=== CV Error Summary ===
+======================================
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K1_rep1.log:CV error (K=1): 0.25322
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K1_rep2.log:CV error (K=1): 0.25321
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K1_rep3.log:CV error (K=1): 0.25321
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K1_rep4.log:CV error (K=1): 0.25321
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K1_rep5.log:CV error (K=1): 0.25323
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K2_rep1.log:CV error (K=2): 0.23363
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K2_rep2.log:CV error (K=2): 0.23360
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K2_rep3.log:CV error (K=2): 0.23361
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K2_rep4.log:CV error (K=2): 0.23564
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K2_rep5.log:CV error (K=2): 0.23362
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K3_rep1.log:CV error (K=3): 0.21706
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K3_rep2.log:CV error (K=3): 0.21704
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K3_rep3.log:CV error (K=3): 0.21705
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K3_rep4.log:CV error (K=3): 0.21708
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K3_rep5.log:CV error (K=3): 0.21703
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K4_rep1.log:CV error (K=4): 0.21251
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K4_rep2.log:CV error (K=4): 0.21250
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K4_rep3.log:CV error (K=4): 0.21249
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K4_rep4.log:CV error (K=4): 0.21251
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K4_rep5.log:CV error (K=4): 0.21252
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K5_rep1.log:CV error (K=5): 0.21039
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K5_rep2.log:CV error (K=5): 0.21038
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K5_rep3.log:CV error (K=5): 0.21042
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K5_rep4.log:CV error (K=5): 0.21040
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K5_rep5.log:CV error (K=5): 0.21041
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K6_rep1.log:CV error (K=6): 0.20905
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K6_rep2.log:CV error (K=6): 0.20907
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K6_rep3.log:CV error (K=6): 0.20905
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K6_rep4.log:CV error (K=6): 0.21007
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K6_rep5.log:CV error (K=6): 0.20907
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K7_rep1.log:CV error (K=7): 0.20862
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K7_rep2.log:CV error (K=7): 0.20861
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K7_rep3.log:CV error (K=7): 0.20864
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K7_rep4.log:CV error (K=7): 0.20866
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K7_rep5.log:CV error (K=7): 0.20864
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K8_rep1.log:CV error (K=8): 0.20925
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K8_rep2.log:CV error (K=8): 0.20882
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K8_rep3.log:CV error (K=8): 0.20918
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K8_rep4.log:CV error (K=8): 0.20882
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K8_rep5.log:CV error (K=8): 0.20848
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K9_rep1.log:CV error (K=9): 0.20863
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K9_rep2.log:CV error (K=9): 0.20949
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K9_rep3.log:CV error (K=9): 0.20870
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K9_rep4.log:CV error (K=9): 0.20940
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K9_rep5.log:CV error (K=9): 0.20864
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K10_rep1.log:CV error (K=10): 0.20919
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K10_rep2.log:CV error (K=10): 0.20975
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K10_rep3.log:CV error (K=10): 0.20971
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K10_rep4.log:CV error (K=10): 0.21057
+/expanse/lustre/projects/csd940/zalibhai/clustering/snpk_output/K10_rep5.log:CV error (K=10): 0.20955
+
+=== Log-likelihood Summary ===
+K=1 rep=1: LL=-439406767.298931 CV=0.25322
+K=1 rep=2: LL=-439406767.298931 CV=0.25321
+K=1 rep=3: LL=-439406767.298931 CV=0.25321
+K=1 rep=4: LL=-439406767.298931 CV=0.25321
+K=1 rep=5: LL=-439406767.298931 CV=0.25323
+K=2 rep=1: LL=-416323231.478567 CV=0.23363
+K=2 rep=2: LL=-416323231.478657 CV=0.23360
+K=2 rep=3: LL=-416323231.478570 CV=0.23361
+K=2 rep=4: LL=-418394157.487197 CV=0.23564
+K=2 rep=5: LL=-416323231.478608 CV=0.23362
+K=3 rep=1: LL=-396908892.857709 CV=0.21706
+K=3 rep=2: LL=-396908663.083073 CV=0.21704
+K=3 rep=3: LL=-396909023.366161 CV=0.21705
+K=3 rep=4: LL=-396908749.312114 CV=0.21708
+K=3 rep=5: LL=-396908896.158856 CV=0.21703
+K=4 rep=1: LL=-390888355.220993 CV=0.21251
+K=4 rep=2: LL=-390888294.970751 CV=0.21250
+K=4 rep=3: LL=-390888438.782077 CV=0.21249
+K=4 rep=4: LL=-390888291.526291 CV=0.21251
+K=4 rep=5: LL=-390888382.597604 CV=0.21252
+K=5 rep=1: LL=-387705228.106701 CV=0.21039
+K=5 rep=2: LL=-387705381.400309 CV=0.21038
+K=5 rep=3: LL=-387705175.894754 CV=0.21042
+K=5 rep=4: LL=-387705497.366554 CV=0.21040
+K=5 rep=5: LL=-387705151.863822 CV=0.21041
+K=6 rep=1: LL=-385011590.595067 CV=0.20905
+K=6 rep=2: LL=-385011643.928021 CV=0.20907
+K=6 rep=3: LL=-385011602.045712 CV=0.20905
+K=6 rep=4: LL=-386162040.759582 CV=0.21007
+K=6 rep=5: LL=-385011687.608362 CV=0.20907
+K=7 rep=1: LL=-383238719.085214 CV=0.20862
+K=7 rep=2: LL=-383238619.479060 CV=0.20861
+K=7 rep=3: LL=-383238743.426194 CV=0.20864
+K=7 rep=4: LL=-383238758.272929 CV=0.20866
+K=7 rep=5: LL=-383238624.319665 CV=0.20864
+K=8 rep=1: LL=-382111277.917974 CV=0.20925
+K=8 rep=2: LL=-381981586.125532 CV=0.20882
+K=8 rep=3: LL=-382111304.318705 CV=0.20918
+K=8 rep=4: LL=-381981495.001083 CV=0.20882
+K=8 rep=5: LL=-381727384.189994 CV=0.20848
+K=9 rep=1: LL=-380470265.249600 CV=0.20863
+K=9 rep=2: LL=-380697386.180991 CV=0.20949
+K=9 rep=3: LL=-380470336.998048 CV=0.20870
+K=9 rep=4: LL=-380853862.623360 CV=0.20940
+K=9 rep=5: LL=-380470327.715362 CV=0.20864
+K=10 rep=1: LL=-379343638.514536 CV=0.20919
+K=10 rep=2: LL=-379440721.824040 CV=0.20975
+K=10 rep=3: LL=-379440768.146799 CV=0.20971
+K=10 rep=4: LL=-379737621.675423 CV=0.21057
+K=10 rep=5: LL=-379490367.406308 CV=0.20955
+
+Finished: Fri Jul 10 18:17:42 PDT 2026

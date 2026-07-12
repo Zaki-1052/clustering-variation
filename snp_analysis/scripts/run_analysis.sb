@@ -1,0 +1,38 @@
+#!/bin/bash
+#SBATCH --job-name=mix_analysis
+#SBATCH --output=logs/mix_analysis_%j.out
+#SBATCH --partition=shared
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=64
+#SBATCH --mem=200G
+#SBATCH --time=48:00:00
+#SBATCH --account=csd940
+
+echo "======================================"
+echo "ADMIXTURE Analysis"
+echo "======================================"
+echo "Started: $(date)"
+echo ""
+
+source ~/.bashrc
+conda activate mariner_env
+
+WORK_DIR="/expanse/lustre/projects/csd940/zalibhai/clustering/structure_kernel_src"
+
+cd "${WORK_DIR}"
+
+echo "=== Starting Analysis runs ==="
+python -m snpk \
+  --admixture-dir ../snpk_output \
+  --psam ../hgdp_all.psam \
+  --bed-prefix ../hgdp_qc \
+  --fam ../hgdp_pruned.fam \
+  --eigenvec ../hgdp_pca.eigenvec \
+  --eigenval ../hgdp_pca.eigenval \
+  --k-values 5 7 \
+  --output-dir ../snpk_results \
+  --mantel \
+  2>&1 | tee ../snpk_analysis.log
+echo ""
+echo "Finished: $(date)"

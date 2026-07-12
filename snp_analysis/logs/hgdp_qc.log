@@ -1,0 +1,41 @@
+PLINK v2.0.0-a.7.1 M1 (4 May 2026)
+Options in effect:
+  --autosome
+  --geno 0.05
+  --maf 0.01
+  --make-bed
+  --max-alleles 2
+  --mind 0.1
+  --out hgdp_qc
+  --pfile hgdp_all vzs
+
+Hostname: Zakirs-MacBook-Air-2.local
+Working directory: /Users/zakiralibhai/Documents/School/anth/clustering
+Start time: Thu Jul  9 23:45:25 2026
+
+Random number seed: 1783665925
+24576 MiB RAM detected; reserving 12288 MiB for main workspace.
+Using up to 10 threads (change this with --threads).
+Warning: Phenotype value in [-8, -9) or (-9, -10] present, when -9 is treated
+as missing.  Use --no-input-missing-phenotype to treat -9 as a numeric value
+(missing values can be indicated by 'NA'), or --neg9-pheno-really-missing to
+suppress this warning.
+929 samples (317 females, 612 males; 929 founders) loaded from hgdp_all.psam.
+78097677 variants in hgdp_all.pvar.zst; 5872764 excluded by --autosome +
+--max-alleles, 72224913 remaining.
+4 phenotypes loaded (2 quantitative, 2 categorical).
+Calculating sample missingness rates... done.
+2 samples removed due to missing genotype data (--mind).
+IDs written to hgdp_qc.mindrem.id .
+927 samples (317 females, 610 males; 927 founders) remaining after main
+filters.
+Calculating allele frequencies... done.
+--geno: 9746248 variants removed due to missing genotype data.
+51730927 variants removed due to allele frequency threshold(s)
+(--maf/--max-maf/--mac/--max-mac).
+10747738 variants remaining after main filters.
+Writing hgdp_qc.fam ... done.
+Writing hgdp_qc.bim ... done.
+Writing hgdp_qc.bed ... done.
+
+End time: Thu Jul  9 23:46:01 2026

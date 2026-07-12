@@ -1,0 +1,14 @@
+MaxIter=  5000
+K      =  3
+M      = 200
+I      =  280
+Nout   =  10
+step   =  1
+GenotypeFile  ="simdata.ped"
+IndividualFile = "NONE"
+printP	= 0
+
+
+
+
+
