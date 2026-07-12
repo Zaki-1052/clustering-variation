@@ -1,0 +1,10 @@
+Metric,Microsatellites,SNPs
+Optimal_K,4,7
+AMOVA_%_among_groups,3.6170,7.9867
+AMOVA_%_among_pops_within_groups,4.0969,4.1300
+AMOVA_%_within_pops,92.2861,87.8834
+Fst,0.0771,0.1212
+Het_r,-0.9036,-0.8812
+Het_slope,-8.175205e-06,-3.303172e-06
+Fst_matrix_correlation,0.8290,
+Fst_correlation_p,0.0000,

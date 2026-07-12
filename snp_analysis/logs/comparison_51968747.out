@@ -1,0 +1,82 @@
+======================================
+Cross-Method Comparison
+======================================
+Started: Sat Jul 11 21:23:55 PDT 2026
+
+Data dir:   /expanse/lustre/projects/csd940/zalibhai/clustering
+Repo dir:   /expanse/lustre/projects/csd940/zalibhai/clustering-variation
+Output dir: /expanse/lustre/projects/csd940/zalibhai/clustering-variation/comparison_results
+
+=== K-Selection Comparison ===
+K comparison plot saved to: /expanse/lustre/projects/csd940/zalibhai/clustering-variation/comparison_results/k_comparison.png
+  Microsatellites best K: 4
+  SNPs best K: 7
+
+=== Loading Microsatellite Data ===
+  1056 individuals, 377 loci
+  Computing AMOVA...
+  Fst = 0.0771
+  Computing heterozygosity...
+  Computing pairwise Fst...
+  Fst: 100/1326 pairs computed
+  Fst: 200/1326 pairs computed
+  Fst: 300/1326 pairs computed
+  Fst: 400/1326 pairs computed
+  Fst: 500/1326 pairs computed
+  Fst: 600/1326 pairs computed
+  Fst: 700/1326 pairs computed
+  Fst: 800/1326 pairs computed
+  Fst: 900/1326 pairs computed
+  Fst: 1000/1326 pairs computed
+  Fst: 1100/1326 pairs computed
+  Fst: 1200/1326 pairs computed
+  Fst: 1300/1326 pairs computed
+  Fst: 1326/1326 pairs computed
+  Mean Fst = 0.0545
+
+=== Loading SNP Data ===
+  927 individuals, 10747738 SNPs
+  Computing AMOVA...
+  Fst = 0.1212
+  Computing heterozygosity...
+  Computing pairwise Fst...
+  Fst: 100/1431 pairs computed
+  Fst: 200/1431 pairs computed
+  Fst: 300/1431 pairs computed
+  Fst: 400/1431 pairs computed
+  Fst: 500/1431 pairs computed
+  Fst: 600/1431 pairs computed
+  Fst: 700/1431 pairs computed
+  Fst: 800/1431 pairs computed
+  Fst: 900/1431 pairs computed
+  Fst: 1000/1431 pairs computed
+  Fst: 1100/1431 pairs computed
+  Fst: 1200/1431 pairs computed
+  Fst: 1300/1431 pairs computed
+  Fst: 1400/1431 pairs computed
+  Fst: 1431/1431 pairs computed
+  Mean Fst = 0.1096
+
+=== Generating Comparison Plots ===
+AMOVA comparison saved to: /expanse/lustre/projects/csd940/zalibhai/clustering-variation/comparison_results/amova_comparison.png
+Heterozygosity comparison saved to: /expanse/lustre/projects/csd940/zalibhai/clustering-variation/comparison_results/het_comparison.png
+
+======================================================================
+COMPARISON: Microsatellites (377 STR) vs SNPs (650k)
+======================================================================
+
+Metric                                 Microsats         SNPs
+----------------------------------------------------------------------
+Optimal K                                      4            7
+% Among groups                               3.6          8.0
+% Among pops within groups                   4.1          4.1
+% Within populations                        92.3         87.9
+Fst                                       0.0771       0.1212
+Het vs dist: r                            -0.904       -0.881
+Het vs dist: slope                     -8.18e-06    -3.30e-06
+
+Fst matrix correlation (Pearson r): 0.829 (p = 0.0000, 51 common pops, 1275 pairs)
+
+Comparison CSV written to: /expanse/lustre/projects/csd940/zalibhai/clustering-variation/comparison_results/comparison_summary.csv
+
+Finished: Sat Jul 11 21:59:43 PDT 2026

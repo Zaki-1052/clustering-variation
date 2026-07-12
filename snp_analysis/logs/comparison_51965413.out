@@ -1,0 +1,36 @@
+======================================
+Cross-Method Comparison
+======================================
+Started: Sat Jul 11 20:38:45 PDT 2026
+
+Data dir:   /expanse/lustre/projects/csd940/zalibhai/clustering
+Repo dir:   /expanse/lustre/projects/csd940/zalibhai/clustering-variation
+Output dir: /expanse/lustre/projects/csd940/zalibhai/clustering-variation/comparison_results
+
+=== K-Selection Comparison ===
+K comparison plot saved to: /expanse/lustre/projects/csd940/zalibhai/clustering-variation/comparison_results/k_comparison.png
+  Microsatellites best K: 4
+  SNPs best K: 7
+
+=== Loading Microsatellite Data ===
+  1056 individuals, 377 loci
+  Computing AMOVA...
+  Fst = 0.0771
+  Computing heterozygosity...
+  Computing pairwise Fst...
+  Fst: 100/1326 pairs computed
+  Fst: 200/1326 pairs computed
+  Fst: 300/1326 pairs computed
+  Fst: 400/1326 pairs computed
+  Fst: 500/1326 pairs computed
+  Fst: 600/1326 pairs computed
+  Fst: 700/1326 pairs computed
+  Fst: 800/1326 pairs computed
+  Fst: 900/1326 pairs computed
+  Fst: 1000/1326 pairs computed
+  Fst: 1100/1326 pairs computed
+  Fst: 1200/1326 pairs computed
+  Fst: 1300/1326 pairs computed
+
+Finished: Sat Jul 11 20:40:18 PDT 2026
+slurmstepd: error: Detected 1 oom_kill event in StepId=51965413.batch. Some of the step tasks have been OOM Killed.
