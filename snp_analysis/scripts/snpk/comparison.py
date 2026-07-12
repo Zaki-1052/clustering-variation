@@ -48,7 +48,7 @@ def compare_k_selection(structk_csv_path, snpk_csv_path, out_path, dpi=200):
         reader = csv.DictReader(f)
         for row in reader:
             structk_data["k"].append(int(row["K"]))
-            structk_data["mean_lnp"].append(float(row["Mean_LnP"]))
+            structk_data["mean_lnp"].append(float(row["Mean_LnPD"]))
             dk = row.get("Delta_K", "")
             structk_data["delta_k"].append(float(dk) if dk else None)
 
