@@ -291,3 +291,100 @@ def write_comparison_csv(k_result, amova_result, het_result, fst_result, out_pat
             w.writerow(["Fst_correlation_p", f"{fst_result['p']:.4f}", ""])
 
     print(f"Comparison CSV written to: {out_path}")
+
+
+if __name__ == "__main__":
+    import argparse
+
+    p = argparse.ArgumentParser(
+        description="Cross-method comparison: microsatellites (STRUCTURE) vs SNPs (ADMIXTURE)")
+    p.add_argument("--structk-csv", required=True,
+                   help="Path to evanno_summary.csv from structk")
+    p.add_argument("--snpk-csv", required=True,
+                   help="Path to cv_summary.csv from snpk")
+    p.add_argument("--structk-geno", required=True,
+                   help="Path to diversitydata.str")
+    p.add_argument("--structk-names", required=True,
+                   help="Path to names.txt for microsatellite populations")
+    p.add_argument("--bed-prefix", required=True,
+                   help="PLINK bed prefix for SNP genotypes (e.g. hgdp_qc)")
+    p.add_argument("--psam", required=True,
+                   help="Path to .psam sample metadata")
+    p.add_argument("--output-dir", "-o", default="comparison_results",
+                   help="Output directory for all comparison plots/CSVs")
+    p.add_argument("--mantel", action="store_true",
+                   help="Run Mantel test on structk IBD")
+    p.add_argument("--mantel-perms", type=int, default=9999)
+    p.add_argument("--dpi", type=int, default=200)
+    args = p.parse_args()
+
+    import os
+    os.makedirs(args.output_dir, exist_ok=True)
+
+    print("=== K-Selection Comparison ===")
+    k_result = compare_k_selection(
+        args.structk_csv, args.snpk_csv,
+        os.path.join(args.output_dir, "k_comparison.png"), args.dpi)
+    print(f"  Microsatellites best K: {k_result['structk_best_k']}")
+    print(f"  SNPs best K: {k_result['snpk_best_k']}")
+
+    print("\n=== Loading Microsatellite Data ===")
+    from structk.genotypes import read_genotypes
+    from structk.amova import compute_amova as structk_compute_amova
+    from structk.heterozygosity import compute_pop_heterozygosity as structk_compute_het
+    from structk.ibd import compute_pairwise_fst as structk_compute_fst
+
+    geno_str = read_genotypes(args.structk_geno, args.structk_names)
+    print(f"  {len(geno_str.individuals)} individuals, {len(geno_str.marker_names)} loci")
+
+    print("  Computing AMOVA...")
+    structk_amova = structk_compute_amova(geno_str)
+    print(f"  Fst = {structk_amova['Fst']:.4f}")
+
+    print("  Computing heterozygosity...")
+    structk_het = structk_compute_het(geno_str)
+
+    print("  Computing pairwise Fst...")
+    structk_pops, structk_fst = structk_compute_fst(geno_str)
+    mean_fst = structk_fst[np.triu_indices(len(structk_pops), k=1)].mean()
+    print(f"  Mean Fst = {mean_fst:.4f}")
+
+    print("\n=== Loading SNP Data ===")
+    from snpk.bed_io import read_bed
+    from snpk.psam import read_psam
+    from snpk.amova import compute_amova as snpk_compute_amova
+    from snpk.heterozygosity import compute_pop_heterozygosity as snpk_compute_het
+    from snpk.ibd import compute_pairwise_fst as snpk_compute_fst
+
+    plink_data = read_bed(args.bed_prefix)
+    psam = read_psam(args.psam)
+    print(f"  {len(plink_data.iids)} individuals, {len(plink_data.snp_ids)} SNPs")
+
+    print("  Computing AMOVA...")
+    snpk_amova = snpk_compute_amova(plink_data, psam)
+    print(f"  Fst = {snpk_amova['Fst']:.4f}")
+
+    print("  Computing heterozygosity...")
+    snpk_het = snpk_compute_het(plink_data, psam)
+
+    print("  Computing pairwise Fst...")
+    snpk_pops, snpk_fst = snpk_compute_fst(plink_data, psam)
+    mean_fst = snpk_fst[np.triu_indices(len(snpk_pops), k=1)].mean()
+    print(f"  Mean Fst = {mean_fst:.4f}")
+
+    print("\n=== Generating Comparison Plots ===")
+    amova_result = compare_amova(
+        structk_amova, snpk_amova,
+        os.path.join(args.output_dir, "amova_comparison.png"), args.dpi)
+
+    het_result = compare_heterozygosity(
+        structk_het, snpk_het,
+        os.path.join(args.output_dir, "het_comparison.png"), args.dpi)
+
+    fst_result = compare_fst_matrices(
+        structk_pops, structk_fst, snpk_pops, snpk_fst)
+
+    print_comparison_summary(k_result, amova_result, het_result, fst_result)
+    write_comparison_csv(
+        k_result, amova_result, het_result, fst_result,
+        os.path.join(args.output_dir, "comparison_summary.csv"))

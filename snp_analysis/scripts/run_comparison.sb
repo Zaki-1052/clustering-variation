@@ -1,0 +1,46 @@
+#!/bin/bash
+#SBATCH --job-name=comparison
+#SBATCH --output=logs/comparison_%j.out
+#SBATCH --partition=shared
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=64G
+#SBATCH --time=12:00:00
+#SBATCH --account=csd940
+# Cross-method comparison: microsatellites (STRUCTURE) vs SNPs (ADMIXTURE)
+
+echo "======================================"
+echo "Cross-Method Comparison"
+echo "======================================"
+echo "Started: $(date)"
+echo ""
+
+source ~/.bashrc
+conda activate mariner_env
+
+DATA_DIR="/expanse/lustre/projects/csd940/zalibhai/clustering"
+REPO_DIR="/expanse/lustre/projects/csd940/zalibhai/clustering-variation"
+OUTPUT_DIR="${REPO_DIR}/comparison_results"
+
+export PYTHONPATH="${REPO_DIR}/structure_analysis/scripts:${REPO_DIR}/snp_analysis/scripts"
+
+mkdir -p logs "${OUTPUT_DIR}"
+
+echo "Data dir:   ${DATA_DIR}"
+echo "Repo dir:   ${REPO_DIR}"
+echo "Output dir: ${OUTPUT_DIR}"
+echo ""
+
+python -m snpk.comparison \
+  --structk-csv "${REPO_DIR}/structure_analysis/results/evanno_summary.csv" \
+  --snpk-csv "${REPO_DIR}/snp_analysis/results/cv_summary.csv" \
+  --structk-geno "${REPO_DIR}/structure_analysis/inputs/diversitydata.str" \
+  --structk-names "${REPO_DIR}/structure_analysis/inputs/names.txt" \
+  --bed-prefix "${DATA_DIR}/hgdp_qc" \
+  --psam "${DATA_DIR}/hgdp_all.psam" \
+  --output-dir "${OUTPUT_DIR}" \
+  2>&1 | tee "${REPO_DIR}/comparison.log"
+
+echo ""
+echo "Finished: $(date)"
