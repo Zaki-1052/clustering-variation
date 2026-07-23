@@ -14,15 +14,15 @@ from .bed_io import read_bed
 
 ADDIS_ABABA = (9.0, 38.75)
 
+# Ramachandran et al. 2005 (PNAS 102:15942), p. 15943 & Supp. Fig. 6
 WAYPOINT_ROUTES = {
     "AFRICA": [],
     "MIDDLE_EAST": [],
-    "EUROPE": [(30.0, 31.0), (41.0, 29.0)],
-    "CENTRAL_SOUTH_ASIA": [(30.0, 31.0), (33.0, 45.0)],
-    "EAST_ASIA": [(30.0, 31.0), (33.0, 45.0)],
-    "OCEANIA": [(30.0, 31.0), (33.0, 45.0), (11.0, 105.0)],
-    "AMERICA": [(30.0, 31.0), (41.0, 29.0), (55.0, 90.0),
-                (65.0, 170.0), (55.0, -130.0)],
+    "EUROPE": [(30, 31), (41, 28)],              # Cairo → Istanbul
+    "CENTRAL_SOUTH_ASIA": [(30, 31)],             # Cairo (overland east via Levant/Iran)
+    "EAST_ASIA": [(30, 31)],                      # Cairo (overland via Central Asia)
+    "OCEANIA": [(30, 31), (11, 104)],             # Cairo → Phnom Penh
+    "AMERICA": [(30, 31), (64, 177), (54, -130)], # Cairo → Anadyr → Prince Rupert
 }
 
 
