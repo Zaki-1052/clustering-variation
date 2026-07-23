@@ -74,6 +74,8 @@ def compute_pop_heterozygosity(plink_data, psam):
         p = np.zeros(g.shape[1])
         p[valid] = dosage[valid] / count[valid]
         het_per_snp = 2 * p * (1 - p)
+        nei_correction = np.where(count > 1, count / (count - 1), 1.0)
+        het_per_snp = het_per_snp * nei_correction
         mean_het = float(np.mean(het_per_snp[valid])) if valid.any() else 0.0
 
         lat, lon = pop_coords.get(pname, (np.nan, np.nan))

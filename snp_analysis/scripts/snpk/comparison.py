@@ -9,35 +9,30 @@ import matplotlib.pyplot as plt
 
 
 POP_NAME_MAP = {
-    "BiakaPygmy": "Biaka",
-    "MbutiPygmy": "Mbuti",
-    "Italian": "BergamoItalian",
-    "Han-NChina": "NorthernHan",
-    "Melanesian": "Bougainville",
-    "Mongola": "Mongolian",
+    "BiakaPygmy": ["Biaka"],
+    "MbutiPygmy": ["Mbuti"],
+    "Italian": ["BergamoItalian"],
+    "Han-NChina": ["NorthernHan"],
+    "Melanesian": ["Bougainville"],
+    "Mongola": ["Mongolian"],
     "Papuan": ["PapuanHighlands", "PapuanSepik"],
 }
 
 
 def _find_common_pops(structk_pops, snpk_pops):
-    """Find populations common to both datasets, accounting for name changes."""
-    reverse_map = {}
-    for old, new in POP_NAME_MAP.items():
-        if isinstance(new, list):
-            for n in new:
-                reverse_map[n] = old
-        else:
-            reverse_map[new] = old
+    """Find populations common to both datasets, accounting for name changes.
 
+    Returns (structk_name, snpk_names) tuples where snpk_names is a list
+    (length 1 for simple renames, >1 for split populations like Papuan).
+    """
     common = []
     for sp in structk_pops:
         if sp in snpk_pops:
-            common.append((sp, sp))
+            common.append((sp, [sp]))
         elif sp in POP_NAME_MAP:
-            new = POP_NAME_MAP[sp]
-            if isinstance(new, str) and new in snpk_pops:
-                common.append((sp, new))
-
+            candidates = POP_NAME_MAP[sp]
+            if all(n in snpk_pops for n in candidates):
+                common.append((sp, candidates))
     return common
 
 
@@ -200,6 +195,12 @@ def compare_heterozygosity(structk_het, snpk_het, out_path, dpi=200):
     }
 
 
+def _mean_snpk_fst(snp_idx, snpk_fst, names1, names2):
+    """Average SNP-side Fst for mapped population lists (handles split pops)."""
+    vals = [snpk_fst[snp_idx[a], snp_idx[b]] for a in names1 for b in names2]
+    return float(np.mean(vals))
+
+
 def compare_fst_matrices(structk_pops, structk_fst, snpk_pops, snpk_fst):
     """Mantel-like correlation between Fst matrices for common populations."""
     common = _find_common_pops(structk_pops, snpk_pops)
@@ -212,12 +213,12 @@ def compare_fst_matrices(structk_pops, structk_fst, snpk_pops, snpk_fst):
 
     str_fst_vals = []
     snp_fst_vals = []
-    for i, (s1, n1) in enumerate(common):
-        for j, (s2, n2) in enumerate(common):
+    for i, (s1, names1) in enumerate(common):
+        for j, (s2, names2) in enumerate(common):
             if j <= i:
                 continue
             str_fst_vals.append(structk_fst[str_idx[s1], str_idx[s2]])
-            snp_fst_vals.append(snpk_fst[snp_idx[n1], snp_idx[n2]])
+            snp_fst_vals.append(_mean_snpk_fst(snp_idx, snpk_fst, names1, names2))
 
     r, p = stats.pearsonr(str_fst_vals, snp_fst_vals)
     return {"r": r, "p": p, "n_common": len(common),
@@ -312,9 +313,6 @@ if __name__ == "__main__":
                    help="Path to .psam sample metadata")
     p.add_argument("--output-dir", "-o", default="comparison_results",
                    help="Output directory for all comparison plots/CSVs")
-    p.add_argument("--mantel", action="store_true",
-                   help="Run Mantel test on structk IBD")
-    p.add_argument("--mantel-perms", type=int, default=9999)
     p.add_argument("--dpi", type=int, default=200)
     args = p.parse_args()
 

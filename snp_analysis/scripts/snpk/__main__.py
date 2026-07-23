@@ -13,7 +13,7 @@ Individual analyses can also be run as standalone modules:
   python -m snpk.barplot       --admixture-dir snpk_output --psam hgdp_all.psam --fam hgdp_pruned.fam
   python -m snpk.pca           --eigenvec hgdp_pca.eigenvec --eigenval hgdp_pca.eigenval --psam hgdp_all.psam
   python -m snpk.amova         --bed-prefix hgdp_qc --psam hgdp_all.psam
-  python -m snpk.ibd           --bed-prefix hgdp_qc --psam hgdp_all.psam --mantel
+  python -m snpk.ibd           --bed-prefix hgdp_qc --psam hgdp_all.psam
   python -m snpk.heterozygosity --bed-prefix hgdp_qc --psam hgdp_all.psam
   python -m snpk.combined      --admixture-dir snpk_output --psam hgdp_all.psam --bed-prefix hgdp_qc --eigenvec hgdp_pca.eigenvec --eigenval hgdp_pca.eigenval
 """,
@@ -30,8 +30,10 @@ Individual analyses can also be run as standalone modules:
                    help="K values for bar plots (default: 5 7)")
     p.add_argument("--output-dir", "-o", default="snpk_results",
                    help="Output directory for all results")
-    p.add_argument("--mantel", action="store_true", help="Run Mantel test for IBD")
-    p.add_argument("--mantel-perms", type=int, default=9999)
+    p.add_argument("--mantel-perms", type=int, default=9999,
+                   help="Number of permutations for Mantel test")
+    p.add_argument("--amova-perms", type=int, default=999,
+                   help="Number of permutations for AMOVA significance test")
     p.add_argument("--dpi", type=int, default=200)
     p.add_argument("--skip", nargs="*", default=[],
                    choices=["cv", "barplot", "pca", "amova", "ibd", "het", "combined"],
@@ -86,7 +88,7 @@ Individual analyses can also be run as standalone modules:
         print("\n=== AMOVA ===")
         _load_geno()
         from .amova import compute_amova, print_amova, plot_amova
-        amova_result = compute_amova(plink_data, psam)
+        amova_result = compute_amova(plink_data, psam, n_perm=args.amova_perms)
         print_amova(amova_result)
         plot_amova(amova_result, str(out / "amova.png"), args.dpi)
 
@@ -102,12 +104,10 @@ Individual analyses can also be run as standalone modules:
         print(f"Mean Fst = {mean_fst:.4f}")
         dist_matrix = compute_geo_distances(pop_names, psam)
 
-        mantel_r, mantel_p = None, None
-        if args.mantel:
-            print(f"Running Mantel test ({args.mantel_perms} permutations)...")
-            mantel_r, mantel_p = mantel_test(dist_matrix, fst_matrix,
-                                             args.mantel_perms)
-            print(f"Mantel r = {mantel_r:.4f}, p = {mantel_p:.4f}")
+        print(f"Running Mantel test ({args.mantel_perms} permutations)...")
+        mantel_r, mantel_p = mantel_test(dist_matrix, fst_matrix,
+                                         args.mantel_perms)
+        print(f"Mantel r = {mantel_r:.4f}, p = {mantel_p:.4f}")
 
         plot_ibd(pop_names, fst_matrix, dist_matrix,
                  str(out / "ibd.png"), args.dpi, mantel_r, mantel_p)

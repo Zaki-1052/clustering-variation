@@ -9,7 +9,7 @@ from matplotlib.gridspec import GridSpec
 from matplotlib.patches import Rectangle
 
 from .genotypes import (
-    read_names, read_genotypes, read_qmatrix, find_best_replicate,
+    read_names, read_genotypes, align_replicates,
     REGION_ORDER, REGION_COLORS,
 )
 from .barplot import _sort_order, CLUSTER_COLORS
@@ -91,7 +91,7 @@ def _draw_ibd(ax, pop_names, fst_matrix, dist_matrix):
     dist_vals = dist_matrix[triu]
 
     valid = np.isfinite(dist_vals) & np.isfinite(fst_vals) & (dist_vals > 0)
-    fst_v = np.maximum(fst_vals[valid], 0.0)
+    fst_v = fst_vals[valid]
     dist_v = dist_vals[valid]
 
     fst_lin = fst_v / (1 - fst_v)
@@ -196,8 +196,7 @@ def generate_combined(output_dir, names_path, geno_path, k_values, out_path, dpi
     print("Plotting bar plots...")
     for row, k in enumerate(k_values[:2]):
         ax = fig.add_subplot(gs[row, :])
-        best = find_best_replicate(output_dir, k)
-        Q, _, pop_ids = read_qmatrix(best)
+        Q, pop_ids, _ = align_replicates(output_dir, k)
         _draw_barplot(ax, Q, pop_ids, pop_info, f"K = {k}")
 
     ax_pcoa = fig.add_subplot(gs[3, :2])

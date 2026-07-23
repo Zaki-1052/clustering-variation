@@ -1,0 +1,66 @@
+#!/bin/bash
+#SBATCH --job-name=snpk_light
+#SBATCH --output=logs/snpk_light_%j.out
+#SBATCH --partition=shared
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=96
+#SBATCH --mem=200G
+#SBATCH --time=04:00:00
+#SBATCH --account=csd940
+# snpk lightweight analyses: CV, PCA, barplot, heterozygosity
+
+echo "======================================"
+echo "snpk: CV + PCA + Barplot + Het"
+echo "======================================"
+echo "Started: $(date)"
+echo ""
+
+source ~/.bashrc
+conda activate mariner_env
+
+DATA_DIR="/expanse/lustre/projects/csd940/zalibhai/clustering"
+REPO_DIR="/expanse/lustre/projects/csd940/zalibhai/clustering-variation"
+export PYTHONPATH="${REPO_DIR}/structure_analysis/scripts:${REPO_DIR}/snp_analysis/scripts"
+
+RESULTS="${REPO_DIR}/snp_analysis/results"
+
+echo "Data: ${DATA_DIR}"
+echo "Repo: ${REPO_DIR}"
+echo ""
+
+echo "=== CV Analysis ==="
+python -m snpk.cv_analysis \
+  --admixture-dir "${DATA_DIR}/snpk_output" \
+  --out "${RESULTS}/cv_plot.png" \
+  2>&1 | tee "${RESULTS}/cv.log"
+
+echo ""
+echo "=== PCA ==="
+python -m snpk.pca \
+  --eigenvec "${DATA_DIR}/hgdp_pca.eigenvec" \
+  --eigenval "${DATA_DIR}/hgdp_pca.eigenval" \
+  --psam "${DATA_DIR}/hgdp_all.psam" \
+  --out "${RESULTS}/pca.png" \
+  2>&1 | tee "${RESULTS}/pca.log"
+
+echo ""
+echo "=== Barplot (CLUMPP-aligned) ==="
+python -m snpk.barplot \
+  --admixture-dir "${DATA_DIR}/snpk_output" \
+  --psam "${DATA_DIR}/hgdp_all.psam" \
+  --fam "${DATA_DIR}/hgdp_pruned.fam" \
+  --k-values 5 7 \
+  --out "${RESULTS}/barplot.png" \
+  2>&1 | tee "${RESULTS}/barplot.log"
+
+echo ""
+echo "=== Heterozygosity ==="
+python -m snpk.heterozygosity \
+  --bed-prefix "${DATA_DIR}/hgdp_qc" \
+  --psam "${DATA_DIR}/hgdp_all.psam" \
+  --out "${RESULTS}/heterozygosity.png" \
+  2>&1 | tee "${RESULTS}/het.log"
+
+echo ""
+echo "Finished: $(date)"

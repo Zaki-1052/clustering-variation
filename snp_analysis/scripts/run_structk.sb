@@ -1,0 +1,73 @@
+#!/bin/bash
+#SBATCH --job-name=structk_all
+#SBATCH --output=logs/structk_all_%j.out
+#SBATCH --partition=shared
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=96
+#SBATCH --mem=200G
+#SBATCH --time=02:00:00
+#SBATCH --account=csd940
+# structk: all analyses (377 loci, ~1056 individuals — fast)
+
+echo "======================================"
+echo "structk: Full Analysis Suite"
+echo "======================================"
+echo "Started: $(date)"
+echo ""
+
+source ~/.bashrc
+conda activate mariner_env
+
+REPO_DIR="/expanse/lustre/projects/csd940/zalibhai/clustering-variation"
+export PYTHONPATH="${REPO_DIR}/structure_analysis/scripts:${REPO_DIR}/snp_analysis/scripts"
+
+GENO="${REPO_DIR}/structure_analysis/inputs/diversitydata.str"
+NAMES="${REPO_DIR}/structure_analysis/inputs/names.txt"
+OUTPUT="${REPO_DIR}/structure_analysis/output"
+RESULTS="${REPO_DIR}/structure_analysis/results"
+
+echo "Repo:    ${REPO_DIR}"
+echo "Inputs:  ${GENO}"
+echo "Output:  ${OUTPUT}"
+echo "Results: ${RESULTS}"
+echo ""
+
+echo "=== AMOVA (999 permutations) ==="
+python -m structk.amova \
+  --geno "${GENO}" --names "${NAMES}" \
+  --out "${RESULTS}/amova_plot.png" \
+  2>&1 | tee "${RESULTS}/amova.log"
+
+echo ""
+echo "=== Heterozygosity ==="
+python -m structk.heterozygosity \
+  --geno "${GENO}" --names "${NAMES}" \
+  --out "${RESULTS}/heterozygosity_plot.png" \
+  2>&1 | tee "${RESULTS}/heterozygosity.log"
+
+echo ""
+echo "=== IBD + Mantel ==="
+python -m structk.ibd \
+  --geno "${GENO}" --names "${NAMES}" \
+  --out "${RESULTS}/ibd_plot.png" \
+  2>&1 | tee "${RESULTS}/ibd.log"
+
+echo ""
+echo "=== Bar Plots (CLUMPP-aligned) ==="
+python -m structk.barplot \
+  --output-dir "${OUTPUT}" --names "${NAMES}" \
+  --k-values 4 5 7 \
+  --out "${RESULTS}/barplot.png" \
+  2>&1 | tee "${RESULTS}/barplot.log"
+
+echo ""
+echo "=== Combined Figure ==="
+python -m structk.combined \
+  --geno "${GENO}" --names "${NAMES}" \
+  --output-dir "${OUTPUT}" --k-values 4 5 \
+  --out "${RESULTS}/combined_figure.png" \
+  2>&1 | tee "${RESULTS}/combined.log"
+
+echo ""
+echo "Finished: $(date)"

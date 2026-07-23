@@ -1,11 +1,12 @@
 # structk/barplot.py
 import argparse
 import numpy as np
+from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-from .genotypes import read_names, read_qmatrix, find_best_replicate, REGION_ORDER
+from .genotypes import read_names, align_replicates, REGION_ORDER
 
 CLUSTER_COLORS = [
     "#377EB8", "#E41A1C", "#4DAF4A", "#FF7F00",
@@ -78,10 +79,10 @@ def plot_barplots(output_dir, names_path, k_values, out_path, dpi=200):
         axes = [axes]
 
     for ax, k in zip(axes, k_values):
-        best = find_best_replicate(output_dir, k)
-        Q, indiv_ids, pop_ids = read_qmatrix(best)
+        Q, pop_ids, info = align_replicates(output_dir, k)
         _plot_barplot(ax, Q, pop_ids, pop_info, f"K = {k}")
-        print(f"K={k}: using {best} ({Q.shape[0]} individuals, {Q.shape[1]} clusters)")
+        print(f"K={k}: CLUMPP-aligned {info['n_replicates']} replicates "
+              f"(reference {Path(info['reference']).name})")
 
     fig.tight_layout(rect=[0, 0.05, 1, 1])
     fig.savefig(out_path, dpi=dpi, bbox_inches="tight")

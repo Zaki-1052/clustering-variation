@@ -1,17 +1,17 @@
 #!/bin/bash
-#SBATCH --job-name=mix_analysis
-#SBATCH --output=logs/mix_analysis_%j.out
+#SBATCH --job-name=snpk_ibd
+#SBATCH --output=logs/snpk_ibd_%j.out
 #SBATCH --partition=shared
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=96
 #SBATCH --mem=200G
-#SBATCH --time=48:00:00
+#SBATCH --time=24:00:00
 #SBATCH --account=csd940
-# Full sequential snpk pipeline (prefer submit_all.sh for parallel execution)
+# snpk IBD: pairwise Fst (~54 pops, ~10.7M SNPs) + Mantel (9999 perms)
 
 echo "======================================"
-echo "snpk Full Pipeline (sequential)"
+echo "snpk IBD + Mantel"
 echo "======================================"
 echo "Started: $(date)"
 echo ""
@@ -23,20 +23,17 @@ DATA_DIR="/expanse/lustre/projects/csd940/zalibhai/clustering"
 REPO_DIR="/expanse/lustre/projects/csd940/zalibhai/clustering-variation"
 export PYTHONPATH="${REPO_DIR}/structure_analysis/scripts:${REPO_DIR}/snp_analysis/scripts"
 
+RESULTS="${REPO_DIR}/snp_analysis/results"
+
 echo "Data: ${DATA_DIR}"
 echo "Repo: ${REPO_DIR}"
 echo ""
 
-echo "=== Starting Analysis runs ==="
-python -m snpk \
-  --admixture-dir "${DATA_DIR}/snpk_output" \
-  --psam "${DATA_DIR}/hgdp_all.psam" \
+python -m snpk.ibd \
   --bed-prefix "${DATA_DIR}/hgdp_qc" \
-  --fam "${DATA_DIR}/hgdp_pruned.fam" \
-  --eigenvec "${DATA_DIR}/hgdp_pca.eigenvec" \
-  --eigenval "${DATA_DIR}/hgdp_pca.eigenval" \
-  --k-values 5 7 \
-  --output-dir "${REPO_DIR}/snp_analysis/results" \
-  2>&1 | tee "${REPO_DIR}/snp_analysis/results/snpk_analysis.log"
+  --psam "${DATA_DIR}/hgdp_all.psam" \
+  --out "${RESULTS}/ibd.png" \
+  2>&1 | tee "${RESULTS}/ibd.log"
+
 echo ""
 echo "Finished: $(date)"

@@ -2,6 +2,7 @@
 import re
 import numpy as np
 from pathlib import Path
+from scipy.optimize import linear_sum_assignment
 
 _CV_PATTERN = re.compile(r"CV error \(K=(\d+)\):\s+([\d.]+)")
 _LL_PATTERN = re.compile(r"Loglikelihood:\s+([-\d.]+)")
@@ -93,3 +94,53 @@ def find_best_replicate(output_dir, k):
         key=lambda r: r["loglik"],
     )
     return best["q_path"]
+
+
+def _align_columns(q_ref, q_other):
+    """Column-permute q_other to best match q_ref (min sum of squared diff)."""
+    k = q_ref.shape[1]
+    cost = np.zeros((k, k))
+    for i in range(k):
+        for j in range(k):
+            cost[i, j] = np.sum((q_ref[:, i] - q_other[:, j]) ** 2)
+    _, col_ind = linear_sum_assignment(cost)
+    return q_other[:, col_ind]
+
+
+def clumpp_align(q_matrices):
+    """CLUMPP-style greedy alignment (Jakobsson & Rosenberg 2007).
+
+    q_matrices[0] is the reference (highest-likelihood replicate).
+    Returns (aligned_matrices, consensus_Q).
+    """
+    if not q_matrices:
+        raise ValueError("clumpp_align requires at least one Q matrix")
+    ref = q_matrices[0]
+    aligned = [ref] + [_align_columns(ref, q) for q in q_matrices[1:]]
+    return aligned, np.mean(aligned, axis=0)
+
+
+def align_replicates(output_dir, k):
+    """Load all replicates for K, align columns, return consensus Q-matrix."""
+    runs = scan_runs(output_dir)
+    if k not in runs:
+        raise FileNotFoundError(f"No ADMIXTURE runs found for K={k} in {output_dir}")
+    usable = [r for r in runs[k]
+              if r["loglik"] is not None and r["q_path"] is not None]
+    if not usable:
+        raise FileNotFoundError(f"No usable ADMIXTURE replicates for K={k}")
+    usable.sort(key=lambda r: r["loglik"], reverse=True)
+
+    q_matrices = [read_q(r["q_path"]) for r in usable]
+    n_ind = q_matrices[0].shape[0]
+    for q, r in zip(q_matrices, usable):
+        if q.shape[0] != n_ind:
+            raise ValueError(
+                f"rep={r['rep']} has {q.shape[0]} individuals, expected {n_ind}")
+
+    _, consensus = clumpp_align(q_matrices)
+    return consensus, {
+        "reference_rep": usable[0]["rep"],
+        "n_replicates": len(usable),
+        "reps_used": [r["rep"] for r in usable],
+    }

@@ -11,7 +11,7 @@ from matplotlib.patches import Rectangle
 
 from .psam import read_psam, REGION_ORDER, REGION_COLORS
 from .bed_io import read_bed, _read_fam
-from .admixture import read_q, find_best_replicate
+from .admixture import align_replicates
 from .barplot import _sort_order, CLUSTER_COLORS
 from .pca import read_eigenvec, read_eigenval, compute_var_explained
 from .amova import compute_amova
@@ -88,7 +88,7 @@ def _draw_ibd(ax, pop_names, fst_matrix, dist_matrix):
     dist_vals = dist_matrix[triu]
 
     valid = np.isfinite(dist_vals) & np.isfinite(fst_vals) & (dist_vals > 0)
-    fst_v = np.maximum(fst_vals[valid], 0.0)
+    fst_v = fst_vals[valid]
     dist_v = dist_vals[valid]
 
     fst_lin = fst_v / (1 - fst_v)
@@ -191,8 +191,7 @@ def generate_combined(admixture_dir, psam_path, bed_prefix, eigenvec_path,
     print("Plotting bar plots...")
     for row, k in enumerate(k_values[:2]):
         ax = fig.add_subplot(gs[row, :])
-        q_path = find_best_replicate(admixture_dir, k)
-        Q = read_q(q_path)
+        Q, _ = align_replicates(admixture_dir, k)
         _draw_barplot(ax, Q, fam_iids, psam, f"K = {k}")
 
     ax_pca = fig.add_subplot(gs[3, :2])

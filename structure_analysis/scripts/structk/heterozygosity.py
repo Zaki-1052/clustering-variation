@@ -129,6 +129,8 @@ def compute_pop_heterozygosity(geno_data):
                         total += 1
             if total > 0:
                 het = 1.0 - sum((c / total) ** 2 for c in counts.values())
+                if total > 1:
+                    het *= total / (total - 1)
                 het_per_locus.append(het)
 
         mean_het = np.mean(het_per_locus) if het_per_locus else 0.0

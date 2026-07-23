@@ -3,6 +3,7 @@ import re
 import numpy as np
 from dataclasses import dataclass, field
 from pathlib import Path
+from scipy.optimize import linear_sum_assignment
 
 
 @dataclass
@@ -159,3 +160,63 @@ def find_best_replicate(output_dir, k):
     if best_path is None:
         raise FileNotFoundError(f"No output files found for K={k} in {output_dir}")
     return best_path
+
+
+def _align_columns(q_ref, q_other):
+    """Column-permute q_other to best match q_ref (min sum of squared diff)."""
+    k = q_ref.shape[1]
+    cost = np.zeros((k, k))
+    for i in range(k):
+        for j in range(k):
+            cost[i, j] = np.sum((q_ref[:, i] - q_other[:, j]) ** 2)
+    _, col_ind = linear_sum_assignment(cost)
+    return q_other[:, col_ind]
+
+
+def clumpp_align(q_matrices):
+    """CLUMPP-style greedy alignment (Jakobsson & Rosenberg 2007).
+
+    q_matrices[0] is the reference (highest-likelihood replicate).
+    Returns (aligned_matrices, consensus_Q).
+    """
+    if not q_matrices:
+        raise ValueError("clumpp_align requires at least one Q matrix")
+    ref = q_matrices[0]
+    aligned = [ref] + [_align_columns(ref, q) for q in q_matrices[1:]]
+    return aligned, np.mean(aligned, axis=0)
+
+
+def align_replicates(output_dir, k):
+    """Load all replicates for K, align columns, return consensus Q-matrix."""
+    output_dir = Path(output_dir)
+    pattern = re.compile(r"Estimated Ln Prob of Data\s+=\s+([-\d.]+)")
+    candidates = []
+    for path in sorted(output_dir.glob(f"k{k}_r*_f")):
+        with open(path) as f:
+            for line in f:
+                m = pattern.search(line)
+                if m:
+                    candidates.append((float(m.group(1)), str(path)))
+                    break
+    if not candidates:
+        raise FileNotFoundError(f"No output files found for K={k} in {output_dir}")
+    candidates.sort(key=lambda t: t[0], reverse=True)
+
+    q_matrices = []
+    ref_ids = None
+    ref_pop_ids = None
+    for lnp, path in candidates:
+        Q, indiv_ids, pop_ids = read_qmatrix(path)
+        if ref_ids is None:
+            ref_ids = indiv_ids
+            ref_pop_ids = pop_ids
+        elif indiv_ids != ref_ids:
+            raise ValueError(f"{path} has different individual ordering; cannot align")
+        q_matrices.append(Q)
+
+    _, consensus = clumpp_align(q_matrices)
+    return consensus, ref_pop_ids, {
+        "reference": candidates[0][1],
+        "n_replicates": len(candidates),
+        "reps_used": [c[1] for c in candidates],
+    }

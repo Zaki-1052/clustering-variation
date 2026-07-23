@@ -249,7 +249,6 @@ def plot_ibd(pop_names, fst_matrix, dist_matrix, out_path, dpi=200,
     fst_v = fst_vals[valid]
     dist_v = dist_vals[valid]
 
-    fst_v = np.maximum(fst_v, 0.0)
     fst_lin = fst_v / (1 - fst_v)
     dist_ln = np.log(dist_v)
 
@@ -283,8 +282,8 @@ if __name__ == "__main__":
     p.add_argument("--geno", required=True, help="Path to diversitydata.str")
     p.add_argument("--names", required=True, help="Path to names.txt")
     p.add_argument("--out", default="ibd_plot.png", help="Output image path")
-    p.add_argument("--mantel", action="store_true", help="Run Mantel test")
-    p.add_argument("--mantel-perms", type=int, default=9999)
+    p.add_argument("--mantel-perms", type=int, default=9999,
+                   help="Number of permutations for Mantel test")
     p.add_argument("--dpi", type=int, default=200)
     args = p.parse_args()
 
@@ -297,10 +296,8 @@ if __name__ == "__main__":
 
     dist_matrix = compute_geo_distances(pop_names)
 
-    mantel_r, mantel_p = None, None
-    if args.mantel:
-        print(f"Running Mantel test ({args.mantel_perms} permutations)...")
-        mantel_r, mantel_p = mantel_test(dist_matrix, fst_matrix, args.mantel_perms)
-        print(f"Mantel r = {mantel_r:.4f}, p = {mantel_p:.4f}")
+    print(f"Running Mantel test ({args.mantel_perms} permutations)...")
+    mantel_r, mantel_p = mantel_test(dist_matrix, fst_matrix, args.mantel_perms)
+    print(f"Mantel r = {mantel_r:.4f}, p = {mantel_p:.4f}")
 
     plot_ibd(pop_names, fst_matrix, dist_matrix, args.out, args.dpi, mantel_r, mantel_p)

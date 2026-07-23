@@ -7,7 +7,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 from .psam import read_psam, REGION_ORDER
-from .admixture import read_q, find_best_replicate
+from .admixture import align_replicates
 from .bed_io import _read_fam
 
 CLUSTER_COLORS = [
@@ -82,14 +82,14 @@ def plot_barplots(output_dir, psam_path, fam_path, k_values, out_path, dpi=200):
         axes = [axes]
 
     for ax, k in zip(axes, k_values):
-        q_path = find_best_replicate(output_dir, k)
-        Q = read_q(q_path)
+        Q, info = align_replicates(output_dir, k)
         if Q.shape[0] != len(iids):
             raise ValueError(
                 f"Q matrix has {Q.shape[0]} rows but .fam has {len(iids)} individuals"
             )
         _plot_barplot(ax, Q, iids, psam, f"K = {k}")
-        print(f"K={k}: using {q_path} ({Q.shape[0]} individuals, {Q.shape[1]} clusters)")
+        print(f"K={k}: CLUMPP-aligned {info['n_replicates']} replicates "
+              f"(reference rep={info['reference_rep']})")
 
     fig.tight_layout(rect=[0, 0.05, 1, 1])
     fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
