@@ -1,0 +1,40 @@
+Loading data...
+Plotting bar plots...
+Running PCoA (proportion of shared alleles)...
+Computing proportion-of-shared-alleles distance matrix...
+  PSA distance: 50/377 loci
+  PSA distance: 100/377 loci
+  PSA distance: 150/377 loci
+  PSA distance: 200/377 loci
+  PSA distance: 250/377 loci
+  PSA distance: 300/377 loci
+  PSA distance: 350/377 loci
+  PSA distance: 377/377 loci
+Running classical PCoA...
+Computing pairwise Fst...
+  Fst: 100/1326 pairs computed
+  Fst: 200/1326 pairs computed
+  Fst: 300/1326 pairs computed
+  Fst: 400/1326 pairs computed
+  Fst: 500/1326 pairs computed
+  Fst: 600/1326 pairs computed
+  Fst: 700/1326 pairs computed
+  Fst: 800/1326 pairs computed
+  Fst: 900/1326 pairs computed
+  Fst: 1000/1326 pairs computed
+  Fst: 1100/1326 pairs computed
+  Fst: 1200/1326 pairs computed
+  Fst: 1300/1326 pairs computed
+  Fst: 1326/1326 pairs computed
+Computing heterozygosity vs distance...
+Computing AMOVA...
+  AMOVA permutation 100/999
+  AMOVA permutation 200/999
+  AMOVA permutation 300/999
+  AMOVA permutation 400/999
+  AMOVA permutation 500/999
+  AMOVA permutation 600/999
+  AMOVA permutation 700/999
+  AMOVA permutation 800/999
+  AMOVA permutation 900/999
+Combined figure saved to: /expanse/lustre/projects/csd940/zalibhai/clustering-variation/structure_analysis/results/combined_figure.png

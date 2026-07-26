@@ -1,0 +1,22 @@
+Loading genotype data...
+Loaded 927 individuals, 10747738 SNPs
+Computing pairwise Fst (Weir & Cockerham, biallelic)...
+  Fst: 100/1431 pairs computed
+  Fst: 200/1431 pairs computed
+  Fst: 300/1431 pairs computed
+  Fst: 400/1431 pairs computed
+  Fst: 500/1431 pairs computed
+  Fst: 600/1431 pairs computed
+  Fst: 700/1431 pairs computed
+  Fst: 800/1431 pairs computed
+  Fst: 900/1431 pairs computed
+  Fst: 1000/1431 pairs computed
+  Fst: 1100/1431 pairs computed
+  Fst: 1200/1431 pairs computed
+  Fst: 1300/1431 pairs computed
+  Fst: 1400/1431 pairs computed
+  Fst: 1431/1431 pairs computed
+Mean Fst = 0.1096
+Running Mantel test (9999 permutations)...
+Mantel r = 0.7184, p = 0.0001
+IBD plot saved to: /expanse/lustre/projects/csd940/zalibhai/clustering-variation/snp_analysis/results/ibd.png

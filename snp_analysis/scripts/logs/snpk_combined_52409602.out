@@ -1,0 +1,34 @@
+======================================
+snpk Combined Figure
+======================================
+Started: Thu Jul 23 17:44:08 PDT 2026
+
+Data: /expanse/lustre/projects/csd940/zalibhai/clustering
+Repo: /expanse/lustre/projects/csd940/zalibhai/clustering-variation
+
+Loading data...
+Plotting bar plots...
+Loading PCA results...
+Loading genotype data for Fst/Het/AMOVA...
+Computing pairwise Fst...
+  Fst: 100/1431 pairs computed
+  Fst: 200/1431 pairs computed
+  Fst: 300/1431 pairs computed
+  Fst: 400/1431 pairs computed
+  Fst: 500/1431 pairs computed
+  Fst: 600/1431 pairs computed
+  Fst: 700/1431 pairs computed
+  Fst: 800/1431 pairs computed
+  Fst: 900/1431 pairs computed
+  Fst: 1000/1431 pairs computed
+  Fst: 1100/1431 pairs computed
+  Fst: 1200/1431 pairs computed
+  Fst: 1300/1431 pairs computed
+  Fst: 1400/1431 pairs computed
+  Fst: 1431/1431 pairs computed
+Computing heterozygosity vs distance...
+Computing AMOVA...
+  AMOVA permutation 100/999
+  AMOVA permutation 200/999
+  AMOVA permutation 300/999
+slurmstepd: error: *** JOB 52409602 ON exp-5-34 CANCELLED AT 2026-07-25T17:44:08 DUE TO TIME LIMIT ***

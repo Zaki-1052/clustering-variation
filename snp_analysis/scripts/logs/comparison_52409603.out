@@ -1,0 +1,51 @@
+======================================
+Cross-Method Comparison
+======================================
+Started: Thu Jul 23 17:45:27 PDT 2026
+
+Data dir:   /expanse/lustre/projects/csd940/zalibhai/clustering
+Repo dir:   /expanse/lustre/projects/csd940/zalibhai/clustering-variation
+Output dir: /expanse/lustre/projects/csd940/zalibhai/clustering-variation/comparison_results
+
+=== K-Selection Comparison ===
+K comparison plot saved to: /expanse/lustre/projects/csd940/zalibhai/clustering-variation/comparison_results/k_comparison.png
+  Microsatellites best K: 4
+  SNPs best K: 7
+
+=== Loading Microsatellite Data ===
+  1056 individuals, 377 loci
+  Computing AMOVA...
+  AMOVA permutation 100/999
+  AMOVA permutation 200/999
+  AMOVA permutation 300/999
+  AMOVA permutation 400/999
+  AMOVA permutation 500/999
+  AMOVA permutation 600/999
+  AMOVA permutation 700/999
+  AMOVA permutation 800/999
+  AMOVA permutation 900/999
+  Fst = 0.0771
+  Computing heterozygosity...
+  Computing pairwise Fst...
+  Fst: 100/1326 pairs computed
+  Fst: 200/1326 pairs computed
+  Fst: 300/1326 pairs computed
+  Fst: 400/1326 pairs computed
+  Fst: 500/1326 pairs computed
+  Fst: 600/1326 pairs computed
+  Fst: 700/1326 pairs computed
+  Fst: 800/1326 pairs computed
+  Fst: 900/1326 pairs computed
+  Fst: 1000/1326 pairs computed
+  Fst: 1100/1326 pairs computed
+  Fst: 1200/1326 pairs computed
+  Fst: 1300/1326 pairs computed
+  Fst: 1326/1326 pairs computed
+  Mean Fst = 0.0545
+
+=== Loading SNP Data ===
+  927 individuals, 10747738 SNPs
+  Computing AMOVA...
+  AMOVA permutation 100/999
+  AMOVA permutation 200/999
+slurmstepd: error: *** JOB 52409603 ON exp-3-49 CANCELLED AT 2026-07-25T17:45:38 DUE TO TIME LIMIT ***

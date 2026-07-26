@@ -1,0 +1,14 @@
+======================================
+snpk AMOVA (999 permutations)
+======================================
+Started: Thu Jul 23 17:40:33 PDT 2026
+
+Data: /expanse/lustre/projects/csd940/zalibhai/clustering
+Repo: /expanse/lustre/projects/csd940/zalibhai/clustering-variation
+
+Loading genotype data...
+Loaded 927 individuals, 10747738 SNPs
+  AMOVA permutation 100/999
+  AMOVA permutation 200/999
+  AMOVA permutation 300/999
+slurmstepd: error: *** JOB 52409600 ON exp-5-37 CANCELLED AT 2026-07-25T17:40:38 DUE TO TIME LIMIT ***

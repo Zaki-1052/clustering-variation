@@ -1,0 +1,28 @@
+  AMOVA permutation 100/999
+  AMOVA permutation 200/999
+  AMOVA permutation 300/999
+  AMOVA permutation 400/999
+  AMOVA permutation 500/999
+  AMOVA permutation 600/999
+  AMOVA permutation 700/999
+  AMOVA permutation 800/999
+  AMOVA permutation 900/999
+
+Hierarchical AMOVA — Variance Partitioning
+=================================================================
+Source of variation                   Variance % of total
+-----------------------------------------------------------------
+Among groups (regions)                  0.0279       3.6%
+Among pops within groups                0.0316       4.1%
+Within populations                      0.7116      92.3%
+-----------------------------------------------------------------
+Total                                   0.7710     100.0%
+
+F-statistics:
+  Fct (among groups)              = 0.0362  (p = 0.0010 **)
+  Fsc (among pops within groups)  = 0.0425  (p = 0.0010 **)
+  Fst (among pops / total)        = 0.0771  (p = 0.0010 **)
+
+Loci used: 377  |  Permutations: 999
+
+AMOVA plot saved to: /expanse/lustre/projects/csd940/zalibhai/clustering-variation/structure_analysis/results/amova_plot.png
